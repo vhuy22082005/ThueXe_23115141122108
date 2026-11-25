@@ -1,6 +1,7 @@
 package com.example.thuexe_23115141122108
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -99,6 +100,11 @@ class MainActivity : AppCompatActivity() {
             }
 
             // (Commit 4 c4save sẽ dán tiếp ngay tại đây)
+            val ma = Logic_2108.sinhMa("HD")
+            val tong = Logic_2108.tinhTienThue(soLuong, donGia)
+            b.tvKetQua.text = Logic_2108.dinhDang(ma, ten, soLuong, donGia, tong)
+            Toast.makeText(this, "Đã lưu $ma", Toast.LENGTH_SHORT).show()
+
         }
     }
 }
