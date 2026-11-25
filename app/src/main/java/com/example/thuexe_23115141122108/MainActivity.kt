@@ -47,7 +47,7 @@ object Logic_2108 {
         }
     }
 
-    fun tinhTienThue(soLuong: Int, donGia: Double): Double = soLuong * donGia
+    fun tinhTienThue(soNgay: Int, donGia: Double): Double = soNgay * donGia
 
     fun dinhDang(ma: String, ten: String, soLuong: Int, donGia: Double, tong: Double): String {
         return "Thành công: $ma | $ten | $soLuong lượt | Tổng: %,.0f đ".format(tong)
@@ -105,6 +105,18 @@ class MainActivity : AppCompatActivity() {
             b.tvKetQua.text = Logic_2108.dinhDang(ma, ten, soLuong, donGia, tong)
             Toast.makeText(this, "Đã lưu $ma", Toast.LENGTH_SHORT).show()
 
+        }
+        // 3. NÚT XÓA FORM (btnXoa2108)
+        b.btnXoa.setOnClickListener {
+             b.edtTen.text?.clear()
+             b.edtSoLuong.text?.clear()
+             b.edtDonGia.text?.clear()
+             b.edtTen.error = null
+             b.edtSoLuong.error = null
+             b.edtDonGia.error = null
+             b.tvKetQua.text = ""
+             b.edtTen.requestFocus()
+             Toast.makeText(this, "Đã xóa sạch form!",Toast.LENGTH_SHORT).show()
         }
     }
 }
