@@ -49,9 +49,13 @@ object Logic_2108 {
 
     fun tinhTienThue(soNgay: Int, donGia: Double): Double = soNgay * donGia
 
-    fun dinhDang(ma: String, ten: String, soLuong: Int, donGia: Double, tong: Double): String {
-        return "Thành công: $ma | $ten | $soLuong lượt | Tổng: %,.0f đ".format(tong)
+    fun dinhDang(ma: String, ten: String, soNgay: Int, donGia: Double, tong: Double): String {
+        return "Thành công: $ma | $ten | $soNgay ngày | Tổng: %,.0f đ".format(tong)
     }
+        fun ghiNhanNgayThue(tongNgayDaNhan2108: Int, soNgay: Int, gioiHan: Int = 15): Int? {
+                val tongMoi = tongNgayDaNhan2108 + soNgay
+                return if (tongMoi <= gioiHan) tongMoi else null
+            }
 }
 class MainActivity : AppCompatActivity() {
 
