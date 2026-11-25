@@ -61,6 +61,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var b: ActivityMainBinding
 
+    private var tongNgayDaNhan2108 = 0
+    private val GIOI_HAN_2108 = 15
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         b = ActivityMainBinding.inflate(layoutInflater)
@@ -102,6 +105,17 @@ class MainActivity : AppCompatActivity() {
             if (!hopLe || ten == null || soLuong == null || donGia == null) {
                 return@setOnClickListener
             }
+            
+            // --- [BỔ SUNG] KIỂM TRA HẠN MỨC SỨC CHỨA ---
+            val tongMoi = Logic_2108.ghiNhanNgayThue(tongNgayDaNhan2108, soLuong, GIOI_HAN_2108)
+            if (tongMoi == null) {
+                val conLai = GIOI_HAN_2108 - tongNgayDaNhan2108
+                b.edtSoLuong.error = "Vượt hạn mức! Chỉ còn lại $conLai ngày"
+                b.edtSoLuong.requestFocus()
+                return@setOnClickListener // Chặn lại không cho lưu
+            }
+            tongNgayDaNhan2108 = tongMoi
+            val conLai = GIOI_HAN_2108 - tongNgayDaNhan2108
 
             // (Commit 4 c4save sẽ dán tiếp ngay tại đây)
             val ma = Logic_2108.sinhMa("HD")
@@ -112,6 +126,7 @@ class MainActivity : AppCompatActivity() {
         }
         // 3. NÚT XÓA FORM (btnXoa2108)
         b.btnXoa.setOnClickListener {
+             tongNgayDaNhan2108 = 0 // Đặt lại về 0 ban đầu
              b.edtTen.text?.clear()
              b.edtSoLuong.text?.clear()
              b.edtDonGia.text?.clear()
